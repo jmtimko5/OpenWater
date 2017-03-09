@@ -1,0 +1,24 @@
+{
+  "name": "openwater",
+  "version": "1.0.0",
+  "description": "Diving App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmtimko5/OpenWater.git"
+  },
+  "author": "Joe Timko, Greg Lyons",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jmtimko5/OpenWater/issues"
+  },
+  "homepage": "https://github.com/jmtimko5/OpenWater#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "mongodb": "^2.2.24"
+  }
+}
