@@ -12,7 +12,7 @@ import {
  Navigator,
 } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
-import Main from './main.js';
+import Main from './Components/main.js';
 
 
 export default class OpenWater extends Component {
