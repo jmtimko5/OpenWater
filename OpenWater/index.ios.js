@@ -12,7 +12,8 @@ import {
  Navigator,
 } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
-import Main from './Components/main.js';
+import Main from './Components/Main.js';
+import NewDiveSite from './Components/NewDiveSite.js';
 
 
 export default class OpenWater extends Component {
@@ -24,8 +25,8 @@ export default class OpenWater extends Component {
   	if(route.name == 'Main') {
     	return <Main navigator={navigator} {...route.passProps}  />
     }
-    if(route.name == 'Test') {
-    	return <Home navigator={navigator} {...route.passProps}  />
+    if(route.name == 'NewDiveSite') {
+    	return <NewDiveSite navigator={navigator} {...route.passProps}  />
     }
   }
 
