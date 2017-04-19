@@ -35,6 +35,16 @@ export default class Main extends Component {
       markers: [],
     }
     this.handleLongPress = this.handleLongPress.bind(this);
+    this.handlePress = this.handlePress.bind(this);
+  }
+
+  _navigateNewDiveSite(coordinate){
+    this.props.navigator.push({
+      name: 'NewDiveSite',
+      passProps: {
+        coordinate: coordinate,
+      },
+    })
   }
 
   handleLongPress(e){
@@ -45,7 +55,14 @@ export default class Main extends Component {
           coordinate: e.nativeEvent.coordinate,
         }
       ],
-    })
+    });
+    this._navigateNewDiveSite(e.nativeEvent.coordinate);
+
+  }
+
+  handlePress(e){
+    console.log("FUCK THE EVENT TRIGGERED FUCK FUCK")
+    console.log(e.nativeEvent.coordinate.latitude)
   }
 
   render() {
@@ -58,6 +75,7 @@ export default class Main extends Component {
             longitudeDelta: 0.0421,
             }}
             onLongPress={this.handleLongPress}
+            onPress={this.handlePress}
             >
           {this.state.markers.map((marker ) => {
             return <Marker {...marker} />
