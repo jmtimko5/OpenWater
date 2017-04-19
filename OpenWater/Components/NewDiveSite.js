@@ -56,37 +56,33 @@ export default class NewDiveSite extends Component {
     })
   }
 
-  // _navigateMain(){
-  //   console.log("WE NAVIGATING HOME BABY")
-  //   this.props.navigator.push({
-  //     name: 'Main',
-  //     passProps: {
-  //
-  //     },
-  //   })
-  // }
-  //
-  // handleSave(e){
-  //   console.log("FUCK FUCK FUCK WE ARE SAVING FUCK HANDLE IT")
-  // }
+  _navigateMain(){
+    this.props.navigator.push({
+      name: 'Main',
+    })
+  }
+
+  handleSave(e){
+    console.warn("FUCK FUCK FUCK WE ARE SAVING FUCK HANDLE IT")
+  }
 
   render() {
+    // <MapView style={ styles.map }
+    // initialRegion={{
+    // latitude: this.props.coordinate.latitude,
+    // longitude: this.props.coordinate.longitude,
+    // latitudeDelta: 0.0522,
+    // longitudeDelta: 0.0221,
+    // }}
+    // >
+    //   {this.state.newDiveMarker}
+    // </MapView>
 
-    <MapView style={ styles.map }
-    initialRegion={{
-    latitude: this.props.coordinate.latitude,
-    longitude: this.props.coordinate.longitude,
-    latitudeDelta: 0.0522,
-    longitudeDelta: 0.0221,
-    }}
-      >
-      {this.state.newDiveMarker}
-      </MapView>
     return (
         <Container>
               <Header>
                   <Left>
-                    <Button transparent>
+                    <Button transparent onPress={this._navigateMain}>
                          <Icon name='arrow-back' />
                     </Button>
                   </Left>
@@ -94,9 +90,14 @@ export default class NewDiveSite extends Component {
                       <Title>New Dive Site</Title>
                   </Body>
                   <Right>
-                    <Text>Save</Text>
+                    <Button transparent onPress={this.handleSave}>
+                      <Text>Save</Text>
+                    </Button>
                 </Right>
               </Header>
+              <Content>
+
+              </Content>
           </Container>
     );
   }
