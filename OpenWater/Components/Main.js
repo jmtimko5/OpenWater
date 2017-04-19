@@ -49,12 +49,12 @@ export default class Main extends Component {
 
   handleLongPress(e){
     this.setState({
-      markers: [
-        ...this.state.markers,
-        {
-          coordinate: e.nativeEvent.coordinate,
-        }
-      ],
+      // markers: [
+      //   ...this.state.markers,
+      //   {
+      //     coordinate: e.nativeEvent.coordinate,
+      //   }
+      // ],
     });
     this._navigateNewDiveSite(e.nativeEvent.coordinate);
 
