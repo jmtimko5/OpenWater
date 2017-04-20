@@ -63,7 +63,12 @@ export default class NewDiveSite extends Component {
   }
 
   handleSave(e){
-    console.warn("FUCK FUCK FUCK WE ARE SAVING FUCK HANDLE IT")
+    //TODO fetch call
+    //TODO get some semblance of who is logged in
+    //TODO make the date parsable
+    var dateAdded = new Date()
+
+    this._navigateMain()
   }
 
   handleDiveNameChange(text){
@@ -79,11 +84,6 @@ export default class NewDiveSite extends Component {
   }
 
   render() {
-    // <Input placeholder='Describe the dive site!' />
-    // <InputGroup underline>
-    // </InputGroup>
-
-
     return (
         <Container>
               <Header>
@@ -109,7 +109,7 @@ export default class NewDiveSite extends Component {
                       </Item>
                       <Item floatingLabel>
                         <Label>Description</Label>
-                        <Textarea style={{height: 40, width: 350}} />
+                        <Input onChangeText={this.handleDiveDescriptionChange} />
                       </Item>
                   </Form>
 
