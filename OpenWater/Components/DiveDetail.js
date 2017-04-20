@@ -39,11 +39,43 @@ export default class DiveDetail extends Component {
     super(props);
 
     this.state = {
-
+      site: {},
+      reviews: {}
     }
 
     this._navigateMain = this._navigateMain.bind(this);
     this._navigateNewReview = this._navigateNewReview.bind(this);
+
+    // GET site
+    fetch('http://localhost:3000/api/v1/sites/'+ props.site, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      this.setState({
+        site: responseJson[0]
+      });
+    });
+
+    // GET reviews
+    fetch('http://localhost:3000/api/v1/sites/' + props.site + '/reviews', {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      this.setState({
+        reviews: responseJson
+      });
+      console.log(this.state);
+    });
 
   }
 
@@ -75,7 +107,7 @@ export default class DiveDetail extends Component {
                     </Button>
                   </Left>
                   <Body>
-                      <Title>{this.props.marker.title}</Title>
+                      <Title>{this.state.site.title}</Title>
                   </Body>
                   <Right>
 
@@ -84,14 +116,14 @@ export default class DiveDetail extends Component {
 
               <Content>
                 <Label>Description:</Label>
-                <Text>use fetch to get description here</Text>
+                <Text>{this.state.site.description}</Text>
                 <Label>Reviews:</Label>
-                  <Card dataArray={reviews}
+                  <Card dataArray={this.state.reviews}
                   renderRow={(review) =>
                     <Review
-                      site_name={review.site_name}
+                      name={review.username}
                       rating={review.rating}
-                      text={review.text}
+                      text={review.message}
                     />
                   }>
                   </Card>

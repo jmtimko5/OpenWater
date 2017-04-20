@@ -3,13 +3,6 @@ import { Container, Content, Label, Header, Left, Right, Button, Icon, Body, Tit
 import { Image } from 'react-native';
 import Review from './Review.js'
 
-// Replace with GET user
-let user = {
-  username: 'TestUser',
-  location: 'Durham',
-  img_src: 'https://facebook.github.io/react/img/logo_og.png'
-};
-
 // Replace with GET reviews for user
 // Need to do a JOIN with dive site to get site name
 let reviews = [
@@ -23,6 +16,41 @@ export default class UserProfile extends Component {
     super(props);
 
     this._navigateBack = this._navigateBack.bind(this);
+
+    this.state = {
+      user: {},
+      reviews: {},
+    };
+
+    // GET user
+    fetch('http://localhost:3000/api/v1/users/'+ props.user, {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      this.setState({
+        user: responseJson[0]
+      });
+    });
+
+    // GET reviews
+    fetch('http://localhost:3000/api/v1/users/' + props.user + '/reviews', {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      this.setState({
+        reviews: responseJson
+      });
+    });
   }
 
   _navigateBack(){
@@ -57,21 +85,17 @@ export default class UserProfile extends Component {
               alignItems: 'center'
             }}
           >
-              <Label>{user.username}</Label>
-              <Label>{user.location}</Label>
-              <Image
-                style={{width: 200, height: 200}}
-                source={{uri: user.img_src}}
-              />
+              <Label>{this.state.user.username}</Label>
+              <Label>{this.state.user.location}</Label>
           </Content>
           <Label>Reviews</Label>
           <Content>
-            <Card dataArray={reviews}
+            <Card dataArray={this.state.reviews}
             renderRow={(review) =>
               <Review
-                site_name={review.site_name}
+                name={review.site_name}
                 rating={review.rating}
-                text={review.text}
+                text={review.message}
               />
             }>
             </Card>
