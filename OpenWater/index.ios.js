@@ -28,6 +28,9 @@ export default class OpenWater extends Component {
     if(route.name == 'NewDiveSite') {
     	return <NewDiveSite navigator={navigator} {...route.passProps}  />
     }
+    if(route.name == 'DiveDetail') {
+      return <DiveDetail navigator={navigator} {...route.passProps} />
+    }
   }
 
   render() {
