@@ -59,6 +59,7 @@ export default class DiveDetail extends Component {
       this.setState({
         site: responseJson[0]
       });
+      console.log(this.state.site);
     });
 
     // GET reviews
@@ -133,9 +134,9 @@ export default class DiveDetail extends Component {
               </Content>
           </Container>
           <MapView style={ styles.map }
-          initialRegion={{
-          latitude: this.props.marker.coordinate.latitude,
-          longitude: this.props.marker.coordinate.longitude,
+          region={{
+          latitude: this.state.site.lat,
+          longitude: this.state.site.lng,
           latitudeDelta: 0.0722,
           longitudeDelta: 0.0421,
           }}
@@ -144,7 +145,7 @@ export default class DiveDetail extends Component {
           scrollEnabled={false}
           zoomEnabled={false}
           >
-          <Marker {...this.props.marker}></Marker>
+           <Marker coordinate={{latitude: this.state.site.lat, longitude: this.state.site.lng}} key={this.state.site.id} />
           </MapView>
         </View>
     );

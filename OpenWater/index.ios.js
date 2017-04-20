@@ -41,7 +41,7 @@ export default class OpenWater extends Component {
       return <EditProfile navigator={navigator} {...route.passProps}  />
     }
     if (route.name == 'NewReview') {
-      return <NewReview nativator={navigator} {...route.passProps} />
+      return <NewReview navigator={navigator} {...route.passProps} />
     }
   }
 
