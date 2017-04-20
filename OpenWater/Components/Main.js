@@ -68,7 +68,6 @@ export default class Main extends Component {
   }
 
   _navigateUserProfile(){
-    console.warn("FUCK WE GOIN USER PROF PICS")
     this.props.navigator.push({
       name: 'UserProfile',
       passProps: {
