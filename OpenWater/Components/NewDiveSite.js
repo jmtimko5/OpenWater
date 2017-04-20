@@ -63,10 +63,29 @@ export default class NewDiveSite extends Component {
   }
 
   handleSave(e){
-    //TODO fetch call
-    //TODO get some semblance of who is logged in
     //TODO make the date parsable
     var dateAdded = new Date()
+
+    //TODO get some semblance of who is logged in as user
+    var data ={
+      creator_id: 1,
+      name: this.state.newDiveName,
+      latitude: this.state.newDiveCoord.latitude,
+      longitude: this.state.newDiveCoord.longitude,
+      description: this.state.newDiveDescription,
+    }
+
+    //POST New Dive Site to API
+    fetch('http://localhost:3000/api/v1/sites/'+ props.site, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+    
+
+
 
     this._navigateMain()
   }

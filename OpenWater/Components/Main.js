@@ -119,8 +119,8 @@ export default class Main extends Component {
               initialRegion={{
               latitude: -16.920334,
               longitude: 145.770859,
-              latitudeDelta: 0.0922,
-              longitudeDelta: 0.0421,
+              latitudeDelta: 1.6922,
+              longitudeDelta: 1.6421,
               }}
               onLongPress={this.handleLongPress}
               onPress={this.handlePress}
