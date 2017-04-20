@@ -59,7 +59,6 @@ export default class DiveDetail extends Component {
       this.setState({
         site: responseJson[0]
       });
-      console.log(this.state.site);
     });
 
     // GET reviews
@@ -75,7 +74,6 @@ export default class DiveDetail extends Component {
       this.setState({
         reviews: responseJson
       });
-      console.log(this.state);
     });
 
   }
@@ -91,7 +89,8 @@ export default class DiveDetail extends Component {
     this.props.navigator.push({
       name: 'NewReview',
       passProps: {
-
+        site_id: this.props.site,
+        site_name: this.state.site.name
       },
     })
   }

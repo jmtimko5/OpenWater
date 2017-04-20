@@ -247,7 +247,7 @@ router.post('/api/v1/reviews', (req, res, next) => {
   	user_id: req.body.user_id,
   	site_id: req.body.site_id,
   	rating: req.body.rating,
-  	message: req.body.description,
+  	message: req.body.message,
   };
   // Get a Postgres client from the connection pool
   pg.connect(connectionString, (err, client, done) => {
