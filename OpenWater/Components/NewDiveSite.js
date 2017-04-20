@@ -6,7 +6,7 @@ import {
  Navigator,
 } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
-import { Container, Content, Header, Left, Right, Title, Button, Body, Icon, ListItem, Text, CheckBox } from 'native-base';
+import { Container, Content, Header, Left, Right, Title, Button, Body, Icon, Form, Input, Item, ListItem, Text, CheckBox } from 'native-base';
 
 
 const styles = StyleSheet.create({
@@ -67,16 +67,7 @@ export default class NewDiveSite extends Component {
   }
 
   render() {
-    // <MapView style={ styles.map }
-    // initialRegion={{
-    // latitude: this.props.coordinate.latitude,
-    // longitude: this.props.coordinate.longitude,
-    // latitudeDelta: 0.0522,
-    // longitudeDelta: 0.0221,
-    // }}
-    // >
-    //   {this.state.newDiveMarker}
-    // </MapView>
+
 
     return (
         <Container>
@@ -96,8 +87,26 @@ export default class NewDiveSite extends Component {
                 </Right>
               </Header>
               <Content>
+                  <Form>
+                      <Item>
+                          <Input placeholder="Username" />
+                      </Item>
+                      <Item last>
+                          <Input placeholder="Password" />
+                      </Item>
+                  </Form>
 
               </Content>
+              <MapView style={ styles.map }
+              initialRegion={{
+              latitude: this.props.coordinate.latitude,
+              longitude: this.props.coordinate.longitude,
+              latitudeDelta: 0.0522,
+              longitudeDelta: 0.0221,
+              }}
+              >
+                {this.state.newDiveMarker}
+              </MapView>
           </Container>
     );
   }
