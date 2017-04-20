@@ -6,27 +6,32 @@ import {
  Navigator,
 } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
-import { Container, Content, Header, Textarea, Left, Right, Title, Button, Label, InputGroup, Body, Icon, Form, Input, Item, ListItem, Text, CheckBox } from 'native-base';
+import { Container, Content, Header, Textarea, Left, Right, H1, H2, H3, Title, Button, Label, InputGroup, Body, Icon, Form, Input, Item, ListItem, Text, CheckBox } from 'native-base';
 
 
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    top: 0,
+    top: 400,
     left: 0,
     right: 0,
     bottom: 0,
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
-  map: {
-    position: 'absolute',
-    top: 80,
-    left: 50,
-    right: 50,
-    bottom: 400,
+  // map: {
+  //   position: 'absolute',
+  //   top: 80,
+  //   left: 50,
+  //   right: 50,
+  //   bottom: 400,
+  // },
+  map:{
+    flex:1
   },
 });
+
+
 
 export default class DiveDetail extends Component {
   constructor(props){
@@ -51,6 +56,7 @@ export default class DiveDetail extends Component {
 
   render() {
     return (
+      <View style={{flex: 1, flexDirection: 'column'}}>
         <Container>
               <Header>
                   <Left>
@@ -65,24 +71,28 @@ export default class DiveDetail extends Component {
 
                   </Right>
               </Header>
-              <Content>
 
+              <Content>
+                <H3>Description:</H3>
+                <Text></Text>
               </Content>
-              <MapView style={ styles.map }
-              initialRegion={{
-              latitude: this.props.marker.coordinate.latitude,
-              longitude: this.props.marker.coordinate.longitude,
-              latitudeDelta: 0.0522,
-              longitudeDelta: 0.0221,
-              }}
-              pitchEnable={false}
-              rotateEnabled={false}
-              scrollEnabled={false}
-              zoomEnabled={false}
-              >
-              <Marker {...this.props.marker}></Marker>
-              </MapView>
           </Container>
+          <MapView style={ styles.map }
+          initialRegion={{
+          latitude: this.props.marker.coordinate.latitude,
+          longitude: this.props.marker.coordinate.longitude,
+          latitudeDelta: 0.0722,
+          longitudeDelta: 0.0421,
+          }}
+          pitchEnable={false}
+          rotateEnabled={false}
+          scrollEnabled={false}
+          zoomEnabled={false}
+          >
+          <Marker {...this.props.marker}></Marker>
+          </MapView>
+        </View>
     );
+
   }
 }
