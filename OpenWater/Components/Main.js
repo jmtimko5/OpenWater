@@ -32,7 +32,7 @@ export default class Main extends Component {
   constructor(props){
     super(props);
     this.state = {
-      sites: {}
+      sites: []
     }
 
     this.handleLongPress = this.handleLongPress.bind(this);
