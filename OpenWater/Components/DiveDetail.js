@@ -74,7 +74,7 @@ export default class DiveDetail extends Component {
 
               <Content>
                 <H3>Description:</H3>
-                <Text></Text>
+                <Text>use fetch to get description here</Text>
               </Content>
           </Container>
           <MapView style={ styles.map }
