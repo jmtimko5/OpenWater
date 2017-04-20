@@ -6,8 +6,14 @@ import {
  Navigator,
 } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
-import { Container, Content, Header, Textarea, Left, Right, H1, H2, H3, Title, Button, Label, InputGroup, Body, Icon, Form, Input, Item, ListItem, Text, CheckBox } from 'native-base';
+import { Container, Content, Header, Textarea, Left, Card, Right, H1, H2, H3, Title, Button, Label, InputGroup, Body, Icon, Form, Input, Item, ListItem, Text, CheckBox } from 'native-base';
+import Review from './Review.js'
 
+let reviews = [
+  {rating: 4, site_id: 1, site_name: 'Beach', text: 'Pretty good dive'},
+  {rating: 3, site_id: 2, site_name: 'Cove', text: 'Ok dive'},
+  {rating: 5, site_id: 3, site_name: 'Lagoon', text: 'Awesome dive'},
+];
 
 const styles = StyleSheet.create({
   container: {
@@ -27,7 +33,8 @@ const styles = StyleSheet.create({
   //   bottom: 400,
   // },
   map:{
-    flex:1
+    flex:1,
+    top: 50,
   },
 });
 
@@ -73,8 +80,18 @@ export default class DiveDetail extends Component {
               </Header>
 
               <Content>
-                <H3>Description:</H3>
+                <Label>Description:</Label>
                 <Text>use fetch to get description here</Text>
+                <Label>Reviews:</Label>
+                  <Card dataArray={reviews}
+                  renderRow={(review) =>
+                    <Review
+                      site_name={review.site_name}
+                      rating={review.rating}
+                      text={review.text}
+                    />
+                  }>
+                  </Card>
               </Content>
           </Container>
           <MapView style={ styles.map }

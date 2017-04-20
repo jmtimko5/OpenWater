@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Content, Label, Header, Body, Title, Card, CardItem, Text } from 'native-base';
 import { Image } from 'react-native';
+import Review from './Review.js'
 
 // Replace with GET user
 let user = {
@@ -68,30 +69,6 @@ export default class UserProfile extends Component {
             </Card>
           </Content>
         </Container>
-    );
-  }
-}
-
-class Review extends Component {
-  constructor(props){
-    super(props);
-  }
-
-  render() {
-    return (
-      <CardItem>
-        <Body>
-          <Text>
-            {this.props.site_name}
-          </Text>
-          <Text>
-            {this.props.rating}
-          </Text>
-          <Text>
-            {this.props.text}
-          </Text>
-        </Body>
-      </CardItem>
     );
   }
 }
