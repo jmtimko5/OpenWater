@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const pg = require('pg');
 const path = require('path');
-const connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/openwater';
+const connectionString = process.env.DATABASE_URL || 'postgres://root:root@localhost:5432/openwater';
 module.exports = router;
+// postgres://[username]:[password]@[host]:[port]/[databasename]
 
 // GET User
 router.get('/api/v1/users/:user_id', (req, res, next) => {
