@@ -48,21 +48,22 @@ export default class Main extends Component {
   }
 
   handleLongPress(e){
-    this.setState({
-      // markers: [
-      //   ...this.state.markers,
-      //   {
-      //     coordinate: e.nativeEvent.coordinate,
-      //   }
-      // ],
-    });
+
     this._navigateNewDiveSite(e.nativeEvent.coordinate);
 
   }
 
   handlePress(e){
-    console.log("FUCK THE EVENT TRIGGERED FUCK FUCK")
-    console.log(e.nativeEvent.coordinate.latitude)
+    this.setState({
+      markers: [
+        ...this.state.markers,
+        {
+          title: "Test",
+          description: "Test Description in Latin of course",
+          coordinate: e.nativeEvent.coordinate,
+        }
+      ],
+    });
   }
 
   render() {
