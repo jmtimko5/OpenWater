@@ -15,7 +15,9 @@ import MapView, { Marker } from 'react-native-maps';
 import Main from './Components/Main.js';
 import DiveDetail from './Components/DiveDetail.js'
 import NewDiveSite from './Components/NewDiveSite.js';
-
+import UserProfile from './Components/UserProfile.js';
+import EditProfile from './Components/EditProfile.js';
+import NewReview from './Components/NewReview.js';
 
 export default class OpenWater extends Component {
   constructor(props){
@@ -31,6 +33,15 @@ export default class OpenWater extends Component {
     }
     if(route.name == 'DiveDetail') {
       return <DiveDetail navigator={navigator} {...route.passProps} />
+    }
+    if(route.name == 'UserProfile') {
+      return <UserProfile navigator={navigator} {...route.passProps}  />
+    }
+    if(route.name == 'EditProfile') {
+      return <EditProfile navigator={navigator} {...route.passProps}  />
+    }
+    if (route.name == 'NewReview') {
+      return <NewReview nativator={navigator} {...route.passProps} />
     }
   }
 
