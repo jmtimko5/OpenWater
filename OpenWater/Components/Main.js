@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   },
   map: {
     position: 'absolute',
-    top: 80,
+    top: 60,
     left: 0,
     right: 0,
     bottom: 0,
@@ -72,7 +72,7 @@ export default class Main extends Component {
     this.props.navigator.push({
       name: 'UserProfile',
       passProps: {
-
+        backRoute: 'Main',
       },
     })
   }
@@ -115,7 +115,7 @@ export default class Main extends Component {
 
           <Content>
           </Content>
-          
+
           <MapView style={ styles.map }
               initialRegion={{
               latitude: 37.78825,

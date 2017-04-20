@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Content, Label, Header, Body, Title, Card, CardItem, Text } from 'native-base';
+import { Container, Content, Label, Header, Left, Right, Button, Icon, Body, Title, Card, CardItem, Text } from 'native-base';
 import { Image } from 'react-native';
 import Review from './Review.js'
 
@@ -27,10 +27,10 @@ export default class UserProfile extends Component {
 
   _navigateBack(){
     this.props.navigator.push({
-      name: 'ViewDiveSite',
+      name: this.props.backRoute,
       passProps: {
-        user_id: this.props.user_id,
-        site_id: this.props.site_id,
+        // user_id: this.props.user_id,
+        // site_id: this.props.site_id,
       }
     });
   }
@@ -39,9 +39,17 @@ export default class UserProfile extends Component {
     return (
       <Container>
         <Header>
+          <Left>
+            <Button transparent onPress={this._navigateBack}>
+                 <Icon name='arrow-back' />
+            </Button>
+          </Left>
           <Body>
               <Title>View Profile</Title>
           </Body>
+          <Right>
+
+          </Right>
         </Header>
           <Content
             contentContainerStyle={{
