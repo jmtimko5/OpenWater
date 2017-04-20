@@ -6,7 +6,7 @@ import {
  Navigator,
 } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
-import { Container, Content, Header, Left, Right, Title, Button, Body, Icon, Form, Input, Item, ListItem, Text, CheckBox } from 'native-base';
+import { Container, Content, Header, Textarea, Left, Right, Title, Button, Label, InputGroup, Body, Icon, Form, Input, Item, ListItem, Text, CheckBox } from 'native-base';
 
 
 const styles = StyleSheet.create({
@@ -36,12 +36,16 @@ export default class NewDiveSite extends Component {
     this.dragDiveSite = this.dragDiveSite.bind(this);
     this._navigateMain = this._navigateMain.bind(this);
     this.handleSave = this.handleSave.bind(this);
+    this.handleDiveNameChange = this.handleDiveNameChange.bind(this);
+    this.handleDiveDescriptionChange = this.handleDiveDescriptionChange.bind(this);
 
     this.state = {
       newDiveMarker: (
         <Marker draggable coordinate={this.props.coordinate} pinColor="blue" onDragEnd={this.dragDiveSite} />
       ),
       newDiveCoord: this.props.coordinate,
+      newDiveName: "",
+      newDiveDescription: "",
     }
 
   }
@@ -49,10 +53,6 @@ export default class NewDiveSite extends Component {
   dragDiveSite(e){
     this.setState({
       newDiveCoord: e.nativeEvent.coordinate,
-      //THIS WORKS BUT eh lets avoid it
-      // newDiveMarker: (
-      //   <Marker draggable coordinate={e.nativeEvent.coordinate} pinColor="blue" onDragEnd={this.dragDiveSite} />
-      // ),
     })
   }
 
@@ -66,7 +66,22 @@ export default class NewDiveSite extends Component {
     console.warn("FUCK FUCK FUCK WE ARE SAVING FUCK HANDLE IT")
   }
 
+  handleDiveNameChange(text){
+    this.setState({
+      newDiveName: text,
+    })
+  }
+
+  handleDiveDescriptionChange(text){
+    this.setState({
+      newDiveDescription: text,
+    })
+  }
+
   render() {
+    // <Input placeholder='Describe the dive site!' />
+    // <InputGroup underline>
+    // </InputGroup>
 
 
     return (
@@ -88,11 +103,13 @@ export default class NewDiveSite extends Component {
               </Header>
               <Content>
                   <Form>
-                      <Item>
-                          <Input placeholder="Username" />
+                      <Item floatingLabel>
+                          <Label>Site Name</Label>
+                          <Input onChangeText={this.handleDiveNameChange} />
                       </Item>
-                      <Item last>
-                          <Input placeholder="Password" />
+                      <Item floatingLabel>
+                        <Label>Description</Label>
+                        <Textarea style={{height: 40, width: 350}} />
                       </Item>
                   </Form>
 
