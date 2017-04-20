@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import Main from './Components/Main.js';
+import DiveDetail from './Components/DiveDetail.js'
 import NewDiveSite from './Components/NewDiveSite.js';
 
 

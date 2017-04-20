@@ -5,7 +5,7 @@ import {
   View,
 } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
-import { Container, Content, Header, Textarea, Left, Right, Title, Button, Label, InputGroup, Body, Icon, Form, Input, Item, ListItem, Text, CheckBox } from 'native-base';
+import { Container, Content, Header, Textarea, Left, Right, H1, H2, H3, Title, Button, Label, InputGroup, Body, Icon, Form, Input, Item, ListItem, Text, CheckBox } from 'native-base';
 
 
 const styles = StyleSheet.create({
@@ -56,11 +56,11 @@ export default class Main extends Component {
   }
 
   //TODO change to input of dive id
-  _navigateDiveDetail(){
+  _navigateDiveDetail(e, marker){
     this.props.navigator.push({
       name: 'DiveDetail',
       passProps: {
-
+        marker: marker,
       },
     })
   }
@@ -103,7 +103,7 @@ export default class Main extends Component {
                 <Marker {...marker} key={i}>
                   <MapView.Callout>
                     <View>
-                      <Text>{marker.title}</Text>
+                      <H3>{marker.title}</H3>
                       <Button transparent onPress={(e) => {this._navigateDiveDetail(e, marker)} }>
                           <Text>Explore</Text>
                           <Icon name='arrow-forward' />
