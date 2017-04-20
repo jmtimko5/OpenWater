@@ -78,8 +78,8 @@ export default class Main extends Component {
             onLongPress={this.handleLongPress}
             onPress={this.handlePress}
             >
-          {this.state.markers.map((marker ) => {
-            return <Marker {...marker} />
+          {this.state.markers.map((marker, i ) => {
+            return <Marker {...marker} key={i} />
         })}
           </MapView>
     );
