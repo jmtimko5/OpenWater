@@ -31,9 +31,15 @@ const styles = StyleSheet.create({
 export default class Main extends Component {
   constructor(props){
     super(props);
-
+    var coord = {
+      latitude: 37.78825,
+      longitude: -122.4324,
+    }
     this.state = {
-      markers: [],
+      markers: [{
+        coordinate: coord,
+        title: "Test Marker",
+      }],
     }
     this.handleLongPress = this.handleLongPress.bind(this);
     this.handlePress = this.handlePress.bind(this);
@@ -79,10 +85,7 @@ export default class Main extends Component {
 
 
   render() {
-    var coord = {
-      latitude: 37.78825,
-      longitude: -122.4324,
-    }
+
 
     return (
           <MapView style={ styles.map }
@@ -95,20 +98,21 @@ export default class Main extends Component {
             onLongPress={this.handleLongPress}
             onPress={this.handlePress}
             >
-          {this.state.markers.map((marker, i ) => {
-            return <Marker {...marker} key={i} />
-        })}
-          <Marker title={"fuck"} coordinate={coord}>
-          <MapView.Callout  >
-          <View >
-            <Text >Charlamange's Bommie</Text>
-            <Button transparent onPress={this._navigateDiveDetail}>
-                <Text>Explore</Text>
-                <Icon name='arrow-forward' />
-            </Button>
-          </View>
-      </MapView.Callout>
-          </Marker>
+            {this.state.markers.map((marker, i ) => {
+              return (
+                <Marker {...marker} key={i}>
+                  <MapView.Callout>
+                    <View>
+                      <Text>{marker.title}</Text>
+                      <Button transparent onPress={(e) => {this._navigateDiveDetail(e, marker)} }>
+                          <Text>Explore</Text>
+                          <Icon name='arrow-forward' />
+                      </Button>
+                    </View>
+                  </MapView.Callout>
+                </Marker>
+              )
+          })}
           </MapView>
     );
   }
