@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
+import { Container, Content, Header, Textarea, Left, Right, H1, H2, H3, Title, Button, Label, InputGroup, Body, Icon, Form, Input, Item, ListItem, Text, CheckBox } from 'native-base';
+
 
 const styles = StyleSheet.create({
   container: {
@@ -30,12 +31,19 @@ const styles = StyleSheet.create({
 export default class Main extends Component {
   constructor(props){
     super(props);
-
+    var coord = {
+      latitude: 37.78825,
+      longitude: -122.4324,
+    }
     this.state = {
-      markers: [],
+      markers: [{
+        coordinate: coord,
+        title: "Test Marker",
+      }],
     }
     this.handleLongPress = this.handleLongPress.bind(this);
     this.handlePress = this.handlePress.bind(this);
+    this._navigateDiveDetail = this._navigateDiveDetail.bind(this);
   }
 
   _navigateNewDiveSite(coordinate){
@@ -47,26 +55,38 @@ export default class Main extends Component {
     })
   }
 
+  //TODO change to input of dive id
+  _navigateDiveDetail(e, marker){
+    this.props.navigator.push({
+      name: 'DiveDetail',
+      passProps: {
+        marker: marker,
+      },
+    })
+  }
+
   handleLongPress(e){
-
     this._navigateNewDiveSite(e.nativeEvent.coordinate);
-
   }
 
   handlePress(e){
-    this.setState({
-      markers: [
-        ...this.state.markers,
-        {
-          title: "Test",
-          description: "Test Description in Latin of course",
-          coordinate: e.nativeEvent.coordinate,
-        }
-      ],
-    });
+    // this.setState({
+    //   markers: [
+    //     ...this.state.markers,
+    //     {
+    //       title: "Test",
+    //       description: "Test Description in Latin of course",
+    //       coordinate: e.nativeEvent.coordinate,
+    //     }
+    //   ],
+    // });
   }
 
+
+
   render() {
+
+
     return (
           <MapView style={ styles.map }
             initialRegion={{
@@ -78,9 +98,21 @@ export default class Main extends Component {
             onLongPress={this.handleLongPress}
             onPress={this.handlePress}
             >
-          {this.state.markers.map((marker ) => {
-            return <Marker {...marker} />
-        })}
+            {this.state.markers.map((marker, i ) => {
+              return (
+                <Marker {...marker} key={i}>
+                  <MapView.Callout>
+                    <View>
+                      <H3>{marker.title}</H3>
+                      <Button transparent onPress={(e) => {this._navigateDiveDetail(e, marker)} }>
+                          <Text>Explore</Text>
+                          <Icon name='arrow-forward' />
+                      </Button>
+                    </View>
+                  </MapView.Callout>
+                </Marker>
+              )
+          })}
           </MapView>
     );
   }
