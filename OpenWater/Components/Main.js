@@ -35,17 +35,35 @@ export default class Main extends Component {
       markers: [],
     }
     this.handleLongPress = this.handleLongPress.bind(this);
+    this.handlePress = this.handlePress.bind(this);
+  }
+
+  _navigateNewDiveSite(coordinate){
+    this.props.navigator.push({
+      name: 'NewDiveSite',
+      passProps: {
+        coordinate: coordinate,
+      },
+    })
   }
 
   handleLongPress(e){
+
+    this._navigateNewDiveSite(e.nativeEvent.coordinate);
+
+  }
+
+  handlePress(e){
     this.setState({
       markers: [
         ...this.state.markers,
         {
+          title: "Test",
+          description: "Test Description in Latin of course",
           coordinate: e.nativeEvent.coordinate,
         }
       ],
-    })
+    });
   }
 
   render() {
@@ -58,6 +76,7 @@ export default class Main extends Component {
             longitudeDelta: 0.0421,
             }}
             onLongPress={this.handleLongPress}
+            onPress={this.handlePress}
             >
           {this.state.markers.map((marker ) => {
             return <Marker {...marker} />
