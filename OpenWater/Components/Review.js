@@ -13,7 +13,7 @@ export default class Review extends Component {
       <CardItem>
         <Body>
           <Text>
-            {this.props.site_name}
+            {this.props.name}
           </Text>
           <Text>
             {this.props.rating}
