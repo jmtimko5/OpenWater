@@ -14,7 +14,8 @@ import {
 import MapView, { Marker } from 'react-native-maps';
 import Main from './Components/Main.js';
 import NewDiveSite from './Components/NewDiveSite.js';
-
+import UserProfile from './Components/UserProfile.js';
+import EditProfile from './Components/EditProfile.js';
 
 export default class OpenWater extends Component {
   constructor(props){
@@ -27,6 +28,12 @@ export default class OpenWater extends Component {
     }
     if(route.name == 'NewDiveSite') {
     	return <NewDiveSite navigator={navigator} {...route.passProps}  />
+    }
+    if(route.name == 'UserProfile') {
+      return <UserProfile navigator={navigator} {...route.passProps}  />
+    }
+    if(route.name == 'EditProfile') {
+      return <EditProfile navigator={navigator} {...route.passProps}  />
     }
   }
 
