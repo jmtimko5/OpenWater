@@ -6,7 +6,7 @@ import {
  Navigator,
 } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
-import { Container, Content, Header, Textarea, Left, Card, Right, H1, H2, H3, Title, Button, Label, InputGroup, Body, Icon, Form, Input, Item, ListItem, Text, CheckBox } from 'native-base';
+import { Container, Content, Header, Textarea, Left, Card, CardItem, Right, H1, H2, H3, Title, Button, Label, InputGroup, Body, Icon, Form, Input, Item, ListItem, Text, CheckBox } from 'native-base';
 import Review from './Review.js'
 
 let reviews = [
@@ -25,13 +25,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
-  // map: {
-  //   position: 'absolute',
-  //   top: 80,
-  //   left: 50,
-  //   right: 50,
-  //   bottom: 400,
-  // },
+
   map:{
     flex:1,
     top: 50,
@@ -49,6 +43,7 @@ export default class DiveDetail extends Component {
     }
 
     this._navigateMain = this._navigateMain.bind(this);
+    this._navigateNewReview = this._navigateNewReview.bind(this);
 
   }
 
@@ -59,6 +54,14 @@ export default class DiveDetail extends Component {
     })
   }
 
+  _navigateNewReview(){
+    this.props.navigator.push({
+      name: 'NewReview',
+      passProps: {
+
+      },
+    })
+  }
 
 
   render() {
@@ -92,6 +95,9 @@ export default class DiveDetail extends Component {
                     />
                   }>
                   </Card>
+                  <Button full rounded onPress={this._navigateNewReview}>
+                      <Text> Review Site </Text>
+                    </Button>
               </Content>
           </Container>
           <MapView style={ styles.map }
