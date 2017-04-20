@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   },
   map: {
     position: 'absolute',
-    top: 0,
+    top: 80,
     left: 0,
     right: 0,
     bottom: 0,
@@ -44,6 +44,8 @@ export default class Main extends Component {
     this.handleLongPress = this.handleLongPress.bind(this);
     this.handlePress = this.handlePress.bind(this);
     this._navigateDiveDetail = this._navigateDiveDetail.bind(this);
+    this._navigateUserProfile = this._navigateUserProfile.bind(this);
+
   }
 
   _navigateNewDiveSite(coordinate){
@@ -61,6 +63,16 @@ export default class Main extends Component {
       name: 'DiveDetail',
       passProps: {
         marker: marker,
+      },
+    })
+  }
+
+  _navigateUserProfile(){
+    console.warn("FUCK WE GOIN USER PROF PICS")
+    this.props.navigator.push({
+      name: 'UserProfile',
+      passProps: {
+
       },
     })
   }
@@ -86,34 +98,52 @@ export default class Main extends Component {
 
   render() {
 
-
     return (
+        <Container>
+          <Header>
+              <Left>
+              </Left>
+              <Body>
+                  <Title>OpenWater</Title>
+              </Body>
+              <Right>
+                <Button transparent onPress={this._navigateUserProfile}>
+                  <Text>Profile</Text>
+                </Button>
+            </Right>
+          </Header>
+
+          <Content>
+          </Content>
+          
           <MapView style={ styles.map }
-            initialRegion={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-            }}
-            onLongPress={this.handleLongPress}
-            onPress={this.handlePress}
-            >
-            {this.state.markers.map((marker, i ) => {
-              return (
-                <Marker {...marker} key={i}>
-                  <MapView.Callout>
-                    <View>
-                      <H3>{marker.title}</H3>
-                      <Button transparent onPress={(e) => {this._navigateDiveDetail(e, marker)} }>
-                          <Text>Explore</Text>
-                          <Icon name='arrow-forward' />
-                      </Button>
-                    </View>
-                  </MapView.Callout>
-                </Marker>
-              )
-          })}
-          </MapView>
+              initialRegion={{
+              latitude: 37.78825,
+              longitude: -122.4324,
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421,
+              }}
+              onLongPress={this.handleLongPress}
+              onPress={this.handlePress}
+              >
+              {this.state.markers.map((marker, i ) => {
+                return (
+                  <Marker {...marker} key={i}>
+                    <MapView.Callout>
+                      <View>
+                        <H3>{marker.title}</H3>
+                        <Button transparent onPress={(e) => {this._navigateDiveDetail(e, marker)} }>
+                            <Text>Explore</Text>
+                            <Icon name='arrow-forward' />
+                        </Button>
+                      </View>
+                    </MapView.Callout>
+                  </Marker>
+                )
+            })}
+            </MapView>
+          </Container>
+
     );
   }
 }
