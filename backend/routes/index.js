@@ -39,7 +39,8 @@ router.post('/api/v1/sites', (req, res, next) => {
   const data = {
   	creator_id: req.body.creator,
   	name: req.body.name,
-  	lat_lng: req.body.lat_lng,
+  	lat: req.body.lat,
+    lng: req.body.lng,
   	description: req.body.description,
   };
   // Get a Postgres client from the connection pool
@@ -51,7 +52,7 @@ router.post('/api/v1/sites', (req, res, next) => {
       return res.status(500).json({success: false, data: err});
     }
     // SQL Query > Insert Data
-    client.query('INSERT INTO Site (creator_id, name, lat_lng, description) values($1, $2, $3, $4, $5)',
+    client.query('INSERT INTO Site (creator_id, name, lat, lng, description) values($1, $2, $3, $4, $5)',
     [data.creator_id, data.name, data.lat_lng, data.description]);
     // SQL Query > Select Data
     const query = client.query('SELECT * FROM Site ORDER BY id ASC');
