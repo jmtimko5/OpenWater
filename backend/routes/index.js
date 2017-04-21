@@ -53,7 +53,7 @@ router.post('/api/v1/sites', (req, res, next) => {
     }
     // SQL Query > Insert Data
     client.query('INSERT INTO Site (creator_id, name, lat, lng, description) values($1, $2, $3, $4, $5)',
-    [data.creator_id, data.name, data.lat_lng, data.description]);
+    [data.creator_id, data.name, data.lat, data.lng, data.description]);
     // SQL Query > Select Data
     const query = client.query('SELECT * FROM Site ORDER BY id ASC');
     // Stream results back one row at a time
