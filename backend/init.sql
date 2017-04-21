@@ -11,7 +11,8 @@ CREATE TABLE Site
   id SERIAL NOT NULL PRIMARY KEY,
   creator_id INTEGER REFERENCES AppUser(id) ON DELETE SET NULL,
   name VARCHAR(256) NOT NULL,
-  lat_lng POINT NOT NULL,
+  lat FLOAT NOT NULL,
+  lng FLOAT NOT NULL,
   description TEXT NOT NULL,
   time_added TIMESTAMP WITHOUT TIME ZONE DEFAULT (now() at time zone 'utc')
 );
@@ -28,8 +29,8 @@ CREATE TABLE Review
 
 INSERT INTO AppUser (username, location) VALUES ('Demo', 'Durham');
 
-INSERT INTO Site (creator_id, name, lat_lng, description) VALUES (1, 'Site1', '90,90', 'Great dive!');
-INSERT INTO Site (creator_id, name, lat_lng, description) VALUES (1, 'Site2', '50,-50', 'Other dive!');
+INSERT INTO Site (creator_id, name, lat, lng, description) VALUES (1, 'Site1', '37.78825', '-122.4324', 'Great dive!');
+INSERT INTO Site (creator_id, name, lat, lng, description) VALUES (1, 'Site2', '37.75','-122.42', 'Other dive!');
 
 INSERT INTO Review (user_id, site_id, rating, message) VALUES (1, 1, 5, 'Amazing');
 INSERT INTO Review (user_id, site_id, rating, message) VALUES (1, 1, 4, 'Good');
