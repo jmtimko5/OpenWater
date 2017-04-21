@@ -107,7 +107,7 @@ export default class DiveDetail extends Component {
                     </Button>
                   </Left>
                   <Body>
-                      <Title>{this.state.site.title}</Title>
+                      <Title>{this.state.site.name}</Title>
                   </Body>
                   <Right>
 
@@ -115,6 +115,8 @@ export default class DiveDetail extends Component {
               </Header>
 
               <Content>
+                <Label>Average Rating:</Label>
+                <Text>{this.state.site.avg} ({this.state.reviews.length} reviews)</Text>
                 <Label>Description:</Label>
                 <Text>{this.state.site.description}</Text>
                 <Label>Reviews:</Label>

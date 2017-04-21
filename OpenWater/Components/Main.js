@@ -141,6 +141,7 @@ export default class Main extends Component {
                     <MapView.Callout>
                       <View>
                         <H3>{site.name}</H3>
+                        <Text>{site.avg}<Icon name='ios-star' /> ({site.count} reviews)</Text>
                         <Button transparent onPress={(e) => {this._navigateDiveDetail(e, site.id)} }>
                             <Text>Explore</Text>
                             <Icon name='arrow-forward' />
