@@ -28,6 +28,7 @@ export default class NewReview extends Component {
 
   handleSubmit(){
     // POST review
+    console.warn("WE POSTING")
     fetch('http://colab-sbx-243.oit.duke.edu/api/v1/reviews', {
       method: 'POST',
       headers: {
@@ -40,8 +41,15 @@ export default class NewReview extends Component {
         rating: this.state.rating,
         message: this.state.message,
       })
+    }).then(function(response) {
+           console.log(response)
+            // _this._navigateMain();
+    }).catch(function(err) {
+           alert(err);
     })
-    .then(this._navigateBack);
+
+
+    // .then(this._navigateBack);
   }
 
   handleRatingChange(text){
