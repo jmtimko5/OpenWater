@@ -60,6 +60,7 @@ export default class NewDiveSite extends Component {
   _navigateMain(){
     this.props.navigator.push({
       name: 'Main',
+      passProps: this.props.prev.passProps
     })
   }
 

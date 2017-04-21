@@ -62,9 +62,11 @@ export default class Main extends Component {
   _navigateNewDiveSite(coordinate){
     this.props.navigator.push({
       name: 'NewDiveSite',
-      passProps: {
-        coordinate: coordinate,
-      },
+      passProps: {...this.props, region: this.state.region, coordinate: coordinate, prev: {
+          name: 'Main',
+          passProps: {...this.props, region: this.state.region}
+        },
+      }
     })
   }
 
@@ -89,7 +91,7 @@ export default class Main extends Component {
         user: 1,
         prev: {
           name: 'Main',
-          passProps: this.props
+          passProps: {...this.props, region: this.state.region}
         },
       },
     })
