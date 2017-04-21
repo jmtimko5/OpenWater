@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Content, Header, List, Left, Right, Body, Title, Text, Button, Form, Item, ListItem, Label, Input, Icon } from 'native-base';
+import { Container, Content, Header, List, Left, Right, Body, Title, Text, Button, Form, Item, ListItem, Label, Input, Icon, Picker } from 'native-base';
 import { Image } from 'react-native';
 
 export default class NewReview extends Component {
@@ -12,7 +12,7 @@ export default class NewReview extends Component {
     this.handleMessageChange = this.handleMessageChange.bind(this);
 
     this.state = {
-      rating: "",
+      rating: 1,
       message: "",
     }
   }
@@ -46,9 +46,9 @@ export default class NewReview extends Component {
     })
   }
 
-  handleRatingChange(text){
+  handleRatingChange(val){
     this.setState({
-      rating: text,
+      rating: val,
     });
   }
 
@@ -77,8 +77,18 @@ export default class NewReview extends Component {
 
           <Form>
               <Item stackedLabel>
-                <Label>Rating</Label>
-                <Input onChangeText={this.handleRatingChange}/>
+                <Label>Rating (click to select)</Label>
+                <Picker
+                  iosHeader="Select Rating"
+                  mode="dropdown"
+                  selectedValue={this.state.rating}
+                  onValueChange={this.handleRatingChange}>
+                  <Item label={makeStars(1)} value={1} />
+                  <Item label={makeStars(2)} value={2} />
+                  <Item label={makeStars(3)} value={3} />
+                  <Item label={makeStars(4)} value={4} />
+                  <Item label={makeStars(5)} value={5} />
+               </Picker>
               </Item>
               <Item stackedLabel>
                 <Label>Message</Label>
@@ -92,4 +102,12 @@ export default class NewReview extends Component {
       </Container>
     );
   }
+}
+
+function makeStars(count) {
+  var stars = [];
+  for (var i=0; i < count; i++) {
+      stars.push(<Icon key={i} style={{fontSize: 20}} name='ios-star'/>);
+  }
+  return <Text note>{stars}</Text>;
 }
