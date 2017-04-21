@@ -14,8 +14,10 @@ let reviews = [
 export default class UserProfile extends Component {
   constructor(props){
     super(props);
+    console.log(props);
 
     this._navigateBack = this._navigateBack.bind(this);
+    this._navigateDiveDetail = this._navigateDiveDetail.bind(this);
 
     this.state = {
       user: {},
@@ -60,6 +62,19 @@ export default class UserProfile extends Component {
     });
   }
 
+  _navigateDiveDetail(site_id){
+    this.props.navigator.push({
+      name: 'DiveDetail',
+      passProps: {
+        site: site_id,
+        prev: {
+          name: 'UserProfile',
+          passProps: this.props
+        },
+      },
+    })
+  }
+
   render() {
     return (
       <Container>
@@ -91,6 +106,8 @@ export default class UserProfile extends Component {
             renderRow={(review) =>
               <Review
                 name={review.site_name}
+                navFunc={this._navigateDiveDetail}
+                id={review.site_id}
                 rating={review.rating}
                 text={review.message}
               />

@@ -67,7 +67,7 @@ export default class Main extends Component {
   }
 
   //TODO change to input of dive id
-  _navigateDiveDetail(e, id){
+  _navigateDiveDetail(id){
     this.props.navigator.push({
       name: 'DiveDetail',
       passProps: {
@@ -149,7 +149,7 @@ export default class Main extends Component {
                       <View>
                         <H3>{site.name}</H3>
                         <Text>{site.avg}<Icon name='ios-star' /> ({site.count} reviews)</Text>
-                        <Button transparent onPress={(e) => {this._navigateDiveDetail(e, site.id)} }>
+                        <Button transparent onPress={() => {this._navigateDiveDetail(site.id)} }>
                             <Text>Explore</Text>
                             <Icon name='arrow-forward' />
                         </Button>

@@ -45,6 +45,7 @@ export default class DiveDetail extends Component {
 
     this._navigateBack = this._navigateBack.bind(this);
     this._navigateNewReview = this._navigateNewReview.bind(this);
+    this._navigateUserProfile = this._navigateUserProfile.bind(this);
 
     // GET site
     fetch('http://localhost:3000/api/v1/sites/'+ props.site, {
@@ -99,6 +100,19 @@ export default class DiveDetail extends Component {
       },
     })
   }
+  
+  _navigateUserProfile(user_id){
+    this.props.navigator.push({
+      name: 'UserProfile',
+      passProps: {
+        user: user_id,
+        prev: {
+          name: 'DiveDetail',
+          passProps: this.props
+        },
+      },
+    })
+  }
 
 
   render() {
@@ -129,6 +143,8 @@ export default class DiveDetail extends Component {
                   renderRow={(review) =>
                     <Review
                       name={review.username}
+                      navFunc={this._navigateUserProfile}
+                      id={review.user_id}
                       rating={review.rating}
                       text={review.message}
                     />
