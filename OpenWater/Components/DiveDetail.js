@@ -151,7 +151,7 @@ export default class DiveDetail extends Component {
                           <Text>{this.state.site.description}</Text>
                       </ListItem>
                       <ListItem itemDivider>
-                          <Text>Reviews</Text>
+                          <Text>Dive Site Reviews</Text>
                       </ListItem>
                         <List dataArray={this.state.reviews}
                         renderRow={(review) =>
