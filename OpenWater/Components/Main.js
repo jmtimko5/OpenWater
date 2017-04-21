@@ -32,11 +32,13 @@ export default class Main extends Component {
   constructor(props){
     super(props);
     this.state = {
-      sites: []
+      sites: [],
+      region: this.props.region,
     }
 
     this.handleLongPress = this.handleLongPress.bind(this);
     this.handlePress = this.handlePress.bind(this);
+    this.onRegionChange = this.onRegionChange.bind(this);
     this._navigateDiveDetail = this._navigateDiveDetail.bind(this);
     this._navigateUserProfile = this._navigateUserProfile.bind(this);
 
@@ -74,7 +76,7 @@ export default class Main extends Component {
         site: id,
         prev: {
           name: 'Main',
-          passProps: this.props
+          passProps: {...this.props, region: this.state.region}
         },
       },
     })
@@ -110,6 +112,10 @@ export default class Main extends Component {
     // });
   }
 
+  onRegionChange(region) {
+    this.setState({region});
+  }
+
 
 
   render() {
@@ -133,14 +139,10 @@ export default class Main extends Component {
           </Content>
 
           <MapView style={ styles.map }
-              initialRegion={{
-              latitude: -16.920334,
-              longitude: 145.770859,
-              latitudeDelta: 3.6922,
-              longitudeDelta: 3.6421,
-              }}
+              region={this.state.region}
               onLongPress={this.handleLongPress}
               onPress={this.handlePress}
+              onRegionChange={this.onRegionChange}
               >
               {this.state.sites.map((site) => {
                 star = (site.avg) ? <Icon name='ios-star' style={{fontSize: 20}} /> : "";
