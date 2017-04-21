@@ -143,12 +143,13 @@ export default class Main extends Component {
               onPress={this.handlePress}
               >
               {this.state.sites.map((site) => {
+                star = (site.avg) ? <Icon name='ios-star' style={{fontSize: 20}} /> : "";
                 return (
                   <Marker coordinate={{latitude: site.lat, longitude: site.lng}} key={site.id} image={require('../img/diving-buoy-small.png')}>
                     <MapView.Callout>
                       <View>
                         <H3>{site.name}</H3>
-                        <Text>{site.avg}<Icon name='ios-star' /> ({site.count} reviews)</Text>
+                        <Text>{site.avg}{star} ({site.count} reviews)</Text>
                         <Button transparent onPress={() => {this._navigateDiveDetail(site.id)} }>
                             <Text>Explore</Text>
                             <Icon name='arrow-forward' />

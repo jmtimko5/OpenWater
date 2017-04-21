@@ -29,7 +29,7 @@ export default class Review extends Component {
 function makeStars(count) {
   var stars = [];
   for (var i=0; i < count; i++) {
-      stars.push(<Icon key={i} name='ios-star'/>);
+      stars.push(<Icon key={i} name='ios-star' style={{fontSize:20}}/>);
   }
   return <Text note>{stars}</Text>;
 }
