@@ -138,8 +138,8 @@ export default class NewDiveSite extends Component {
               initialRegion={{
               latitude: this.props.coordinate.latitude,
               longitude: this.props.coordinate.longitude,
-              latitudeDelta: 0.0522,
-              longitudeDelta: 0.0221,
+              latitudeDelta: 3.0522,
+              longitudeDelta: 3.0221,
               }}
               >
                 {this.state.newDiveMarker}
