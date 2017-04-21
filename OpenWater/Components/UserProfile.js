@@ -55,11 +55,8 @@ export default class UserProfile extends Component {
 
   _navigateBack(){
     this.props.navigator.push({
-      name: this.props.backRoute,
-      passProps: {
-        // user_id: this.props.user_id,
-        // site_id: this.props.site_id,
-      }
+      name: this.props.prev.name,
+      passProps: this.props.prev.passProps
     });
   }
 

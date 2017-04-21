@@ -72,6 +72,10 @@ export default class Main extends Component {
       name: 'DiveDetail',
       passProps: {
         site: id,
+        prev: {
+          name: 'Main',
+          passProps: this.props
+        },
       },
     })
   }
@@ -80,8 +84,11 @@ export default class Main extends Component {
     this.props.navigator.push({
       name: 'UserProfile',
       passProps: {
-        backRoute: 'Main',
-        user: 1
+        user: 1,
+        prev: {
+          name: 'Main',
+          passProps: this.props
+        },
       },
     })
   }
