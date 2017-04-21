@@ -31,20 +31,29 @@ const styles = StyleSheet.create({
 export default class Main extends Component {
   constructor(props){
     super(props);
-    var coord = {
-      latitude: -16.918354,
-      longitude: 145.770839,
-    }
     this.state = {
-      markers: [{
-        coordinate: coord,
-        title: "Test Marker",
-      }],
+      sites: []
     }
+
     this.handleLongPress = this.handleLongPress.bind(this);
     this.handlePress = this.handlePress.bind(this);
     this._navigateDiveDetail = this._navigateDiveDetail.bind(this);
     this._navigateUserProfile = this._navigateUserProfile.bind(this);
+
+    // GET sites
+    fetch('http://localhost:3000/api/v1/sites/', {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      this.setState({
+        sites: responseJson
+      });
+    });
 
   }
 
@@ -58,11 +67,11 @@ export default class Main extends Component {
   }
 
   //TODO change to input of dive id
-  _navigateDiveDetail(e, marker){
+  _navigateDiveDetail(e, id){
     this.props.navigator.push({
       name: 'DiveDetail',
       passProps: {
-        marker: marker,
+        site: id,
       },
     })
   }
@@ -125,13 +134,13 @@ export default class Main extends Component {
               onLongPress={this.handleLongPress}
               onPress={this.handlePress}
               >
-              {this.state.markers.map((marker, i ) => {
+              {this.state.sites.map((site) => {
                 return (
-                  <Marker {...marker} key={i}>
+                  <Marker coordinate={{latitude: site.lat, longitude: site.lng}} key={site.id}>
                     <MapView.Callout>
                       <View>
-                        <H3>{marker.title}</H3>
-                        <Button transparent onPress={(e) => {this._navigateDiveDetail(e, marker)} }>
+                        <H3>{site.name}</H3>
+                        <Button transparent onPress={(e) => {this._navigateDiveDetail(e, site.id)} }>
                             <Text>Explore</Text>
                             <Icon name='arrow-forward' />
                         </Button>
