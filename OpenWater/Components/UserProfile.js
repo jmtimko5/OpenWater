@@ -23,7 +23,7 @@ export default class UserProfile extends Component {
     };
 
     // GET user
-    fetch('http://localhost:3000/api/v1/users/'+ props.user, {
+    fetch('http://colab-sbx-243.oit.duke.edu/api/v1/users/'+ props.user, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -38,7 +38,7 @@ export default class UserProfile extends Component {
     });
 
     // GET reviews
-    fetch('http://localhost:3000/api/v1/users/' + props.user + '/reviews', {
+    fetch('http://colab-sbx-243.oit.duke.edu/api/v1/users/' + props.user + '/reviews', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',

@@ -28,7 +28,7 @@ export default class NewReview extends Component {
 
   handleSubmit(){
     // POST review
-    fetch('http://localhost:3000/api/v1/reviews', {
+    fetch('http://colab-sbx-243.oit.duke.edu/api/v1/reviews', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

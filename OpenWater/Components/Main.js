@@ -41,7 +41,7 @@ export default class Main extends Component {
     this._navigateUserProfile = this._navigateUserProfile.bind(this);
 
     // GET sites
-    fetch('http://localhost:3000/api/v1/sites/', {
+    fetch('http://colab-sbx-243.oit.duke.edu/api/v1/sites/', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',

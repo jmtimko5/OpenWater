@@ -47,7 +47,7 @@ export default class DiveDetail extends Component {
     this._navigateNewReview = this._navigateNewReview.bind(this);
 
     // GET site
-    fetch('http://localhost:3000/api/v1/sites/'+ props.site, {
+    fetch('http://colab-sbx-243.oit.duke.edu/api/v1/sites/'+ props.site, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -62,7 +62,7 @@ export default class DiveDetail extends Component {
     });
 
     // GET reviews
-    fetch('http://localhost:3000/api/v1/sites/' + props.site + '/reviews', {
+    fetch('http://colab-sbx-243.oit.duke.edu/api/v1/sites/' + props.site + '/reviews', {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -138,8 +138,8 @@ export default class DiveDetail extends Component {
           region={{
           latitude: this.state.site.lat,
           longitude: this.state.site.lng,
-          latitudeDelta: 0.0722,
-          longitudeDelta: 0.0421,
+          latitudeDelta: 3.0722,
+          longitudeDelta: 3.0421,
           }}
           pitchEnable={false}
           rotateEnabled={false}
