@@ -28,7 +28,6 @@ export default class NewReview extends Component {
 
   handleSubmit(){
     // POST review
-    console.warn("WE POSTING")
     fetch('http://colab-sbx-243.oit.duke.edu/api/v1/reviews', {
       method: 'POST',
       headers: {
