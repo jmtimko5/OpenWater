@@ -41,7 +41,8 @@ export default class NewDiveSite extends Component {
 
     this.state = {
       newDiveMarker: (
-        <Marker draggable coordinate={this.props.coordinate} pinColor="blue" onDragEnd={this.dragDiveSite} />
+        <Marker draggable coordinate={this.props.coordinate} image={require('../img/diving-buoy-small.png')} onDragEnd={this.dragDiveSite}
+       />
       ),
       newDiveCoord: this.props.coordinate,
       newDiveName: "",

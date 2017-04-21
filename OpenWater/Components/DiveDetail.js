@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
 
   map:{
     flex:1,
-    top: 50,
+    top: 0,
   },
 });
 
@@ -100,7 +100,7 @@ export default class DiveDetail extends Component {
       },
     })
   }
-  
+
   _navigateUserProfile(user_id){
     this.props.navigator.push({
       name: 'UserProfile',
@@ -167,7 +167,8 @@ export default class DiveDetail extends Component {
           scrollEnabled={false}
           zoomEnabled={false}
           >
-           <Marker coordinate={{latitude: this.state.site.lat, longitude: this.state.site.lng}} key={this.state.site.id} />
+           <Marker coordinate={{latitude: this.state.site.lat, longitude: this.state.site.lng}}   image={require('../img/diving-buoy-small.png')}
+                   key={this.state.site.id} />
           </MapView>
         </View>
     );
