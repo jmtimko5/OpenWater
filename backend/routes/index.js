@@ -243,6 +243,7 @@ router.put('/api/v1/users/:user_id/location', (req, res, next) => {
 router.post('/api/v1/reviews', (req, res, next) => {
   const results = [];
   // Grab data from http request
+
   const data = {
   	user_id: req.body.user_id,
   	site_id: req.body.site_id,

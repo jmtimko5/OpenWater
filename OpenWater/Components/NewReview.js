@@ -26,7 +26,8 @@ export default class NewReview extends Component {
 
   handleSubmit(){
     // POST review
-    fetch('http://localhost:3000/api/v1/reviews', {
+    var _this = this;
+    fetch('http://colab-sbx-243.oit.duke.edu/api/v1/reviews', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -38,8 +39,11 @@ export default class NewReview extends Component {
         rating: this.state.rating,
         message: this.state.message,
       })
+    }).then(function(response) {
+           _this._navigateBack();
+    }).catch(function(err) {
+           alert(err);
     })
-    .then(this._navigateBack);
   }
 
   handleRatingChange(text){
