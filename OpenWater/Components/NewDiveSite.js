@@ -90,9 +90,6 @@ export default class NewDiveSite extends Component {
      console.warn(response.json())
   })
 
-
-
-
     this._navigateMain()
   }
 
