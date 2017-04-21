@@ -29,8 +29,8 @@ CREATE TABLE Review
 
 INSERT INTO AppUser (username, location) VALUES ('Demo', 'Durham');
 
-INSERT INTO Site (creator_id, name, lat, lng, description) VALUES (1, 'Site1', '37.78825', '-122.4324', 'Great dive!');
-INSERT INTO Site (creator_id, name, lat, lng, description) VALUES (1, 'Site2', '37.75','-122.42', 'Other dive!');
+INSERT INTO Site (creator_id, name, lat, lng, description) VALUES (1, 'Site1', '-16.920334', '145.770859', 'Great dive!');
+INSERT INTO Site (creator_id, name, lat, lng, description) VALUES (1, 'Site2', '-16.98','145.84', 'Other dive!');
 
 INSERT INTO Review (user_id, site_id, rating, message) VALUES (1, 1, 5, 'Amazing');
 INSERT INTO Review (user_id, site_id, rating, message) VALUES (1, 1, 4, 'Good');

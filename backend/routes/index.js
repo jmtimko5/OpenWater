@@ -81,7 +81,7 @@ router.get('/api/v1/sites', (req, res, next) => {
       return res.status(500).json({success: false, data: err});
     }
     // SQL Query > Select Data
-    const query = client.query('SELECT * FROM Site ORDER BY id ASC;');
+    const query = client.query('SELECT s.*, round(AVG(r.rating),1) as avg, count(r.*) as count FROM Site as s, Review as r WHERE s.id=r.site_id GROUP BY s.id ORDER BY s.id ASC;');
     // Stream results back one row at a time
     query.on('row', (row) => {
       results.push(row);
@@ -108,7 +108,7 @@ router.get('/api/v1/sites/:site_id', (req, res, next) => {
       return res.status(500).json({success: false, data: err});
     }
     // SQL Query > Select Data
-    const query = client.query('SELECT * FROM Site WHERE id=$1;', [id]);
+    const query = client.query('SELECT s.*, round(AVG(r.rating),1) as avg FROM Site as s, Review as r WHERE s.id=$1 AND s.id=r.site_id GROUP BY s.id;', [id]);
     // Stream results back one row at a time
     query.on('row', (row) => {
       results.push(row);
