@@ -38,7 +38,7 @@ router.post('/api/v1/sites', (req, res, next) => {
   const results = [];
   // Grab data from http request
   const data = {
-  	creator_id: req.body.creator,
+  	creator_id: req.body.creator_id,
   	name: req.body.name,
   	lat: req.body.lat,
     lng: req.body.lng,
