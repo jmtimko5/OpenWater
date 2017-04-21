@@ -43,8 +43,9 @@ export default class DiveDetail extends Component {
       reviews: {}
     }
 
-    this._navigateMain = this._navigateMain.bind(this);
+    this._navigateBack = this._navigateBack.bind(this);
     this._navigateNewReview = this._navigateNewReview.bind(this);
+    this._navigateUserProfile = this._navigateUserProfile.bind(this);
 
     // GET site
     fetch('http://localhost:3000/api/v1/sites/'+ props.site, {
@@ -79,9 +80,10 @@ export default class DiveDetail extends Component {
   }
 
 
-  _navigateMain(){
+  _navigateBack(){
     this.props.navigator.push({
-      name: 'Main',
+      name: this.props.prev.name,
+      passProps: this.props.prev.passProps
     })
   }
 
@@ -90,7 +92,24 @@ export default class DiveDetail extends Component {
       name: 'NewReview',
       passProps: {
         site_id: this.props.site,
-        site_name: this.state.site.name
+        site_name: this.state.site.name,
+        prev: {
+          name: 'DiveDetail',
+          passProps: this.props
+        },
+      },
+    })
+  }
+  
+  _navigateUserProfile(user_id){
+    this.props.navigator.push({
+      name: 'UserProfile',
+      passProps: {
+        user: user_id,
+        prev: {
+          name: 'DiveDetail',
+          passProps: this.props
+        },
       },
     })
   }
@@ -102,7 +121,7 @@ export default class DiveDetail extends Component {
         <Container>
               <Header>
                   <Left>
-                    <Button transparent onPress={this._navigateMain}>
+                    <Button transparent onPress={this._navigateBack}>
                          <Icon name='arrow-back' />
                     </Button>
                   </Left>
@@ -124,6 +143,8 @@ export default class DiveDetail extends Component {
                   renderRow={(review) =>
                     <Review
                       name={review.username}
+                      navFunc={this._navigateUserProfile}
+                      id={review.user_id}
                       rating={review.rating}
                       text={review.message}
                     />

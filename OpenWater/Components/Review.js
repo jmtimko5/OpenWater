@@ -12,7 +12,7 @@ export default class Review extends Component {
     return (
       <CardItem>
         <Body>
-          <Text>
+          <Text onPress={()=>{this.props.navFunc(this.props.id);}}>
             {this.props.name}
           </Text>
           <Text>

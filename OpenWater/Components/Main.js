@@ -67,11 +67,15 @@ export default class Main extends Component {
   }
 
   //TODO change to input of dive id
-  _navigateDiveDetail(e, id){
+  _navigateDiveDetail(id){
     this.props.navigator.push({
       name: 'DiveDetail',
       passProps: {
         site: id,
+        prev: {
+          name: 'Main',
+          passProps: this.props
+        },
       },
     })
   }
@@ -80,8 +84,11 @@ export default class Main extends Component {
     this.props.navigator.push({
       name: 'UserProfile',
       passProps: {
-        backRoute: 'Main',
-        user: 1
+        user: 1,
+        prev: {
+          name: 'Main',
+          passProps: this.props
+        },
       },
     })
   }
@@ -142,7 +149,7 @@ export default class Main extends Component {
                       <View>
                         <H3>{site.name}</H3>
                         <Text>{site.avg}<Icon name='ios-star' /> ({site.count} reviews)</Text>
-                        <Button transparent onPress={(e) => {this._navigateDiveDetail(e, site.id)} }>
+                        <Button transparent onPress={() => {this._navigateDiveDetail(site.id)} }>
                             <Text>Explore</Text>
                             <Icon name='arrow-forward' />
                         </Button>
