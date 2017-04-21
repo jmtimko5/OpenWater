@@ -47,6 +47,9 @@ export default class DiveDetail extends Component {
     this._navigateNewReview = this._navigateNewReview.bind(this);
     this._navigateUserProfile = this._navigateUserProfile.bind(this);
 
+    // Ignore incorrect warnings about passing data to Components
+    console.ignoredYellowBox = ['Warning: Failed prop type'];
+
     // GET site
     fetch('http://colab-sbx-243.oit.duke.edu/api/v1/sites/'+ props.site, {
       method: 'GET',
