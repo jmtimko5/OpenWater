@@ -81,6 +81,7 @@ export default class Main extends Component {
       name: 'UserProfile',
       passProps: {
         backRoute: 'Main',
+        user: 1
       },
     })
   }
