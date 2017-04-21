@@ -44,9 +44,6 @@ export default class NewReview extends Component {
     }).catch(function(err) {
            alert(err);
     })
-
-
-    // .then(this._navigateBack);
   }
 
   handleRatingChange(text){

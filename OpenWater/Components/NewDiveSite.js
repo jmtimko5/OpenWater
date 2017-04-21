@@ -81,8 +81,10 @@ export default class NewDiveSite extends Component {
         description: this.state.newDiveDescription,
       }),
     }).then(function(response) {
+      console.log(response)
             _this._navigateMain();
     }).catch(function(err) {
+      console.log(err)
            alert(err);
     })
 
