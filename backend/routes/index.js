@@ -20,7 +20,7 @@ router.get('/api/v1/users/:user_id', (req, res, next) => {
       return res.status(500).json({success: false, data: err});
     }
     // SQL Query > Select Data
-    const query = client.query('SELECT * FROM AppUser WHERE id=$1;', [id]);
+    const query = client.query("SELECT *, to_char(time_added, 'MM/DD/YY') as joined FROM AppUser WHERE id=$1;", [id]);
     // Stream results back one row at a time
     query.on('row', (row) => {
       results.push(row);
@@ -135,7 +135,7 @@ router.get('/api/v1/sites/:site_id/reviews', (req, res, next) => {
       return res.status(500).json({success: false, data: err});
     }
     // SQL Query > Select Data
-    const query = client.query('SELECT r.*, u.username FROM Review AS r, AppUser as u WHERE r.site_id=$1 AND u.id = r.user_id ORDER BY r.id ASC;', [id]);
+    const query = client.query("SELECT r.*, to_char(r.time_added, 'MM/DD/YY') as date, u.username FROM Review AS r, AppUser as u WHERE r.site_id=$1 AND u.id = r.user_id ORDER BY r.id ASC;", [id]);
     // Stream results back one row at a time
     query.on('row', (row) => {
       results.push(row);
@@ -162,7 +162,7 @@ router.get('/api/v1/users/:user_id/reviews', (req, res, next) => {
       return res.status(500).json({success: false, data: err});
     }
     // SQL Query > Select Data
-    const query = client.query('SELECT r.*, s.name AS site_name FROM Review AS r, Site as s WHERE r.user_id=$1 AND s.id = r.site_id ORDER BY r.id ASC;', [id]);
+    const query = client.query("SELECT r.*, to_char(r.time_added, 'MM/DD/YY') as date, s.name AS site_name FROM Review AS r, Site as s WHERE r.user_id=$1 AND s.id = r.site_id ORDER BY r.id ASC;", [id]);
     // Stream results back one row at a time
     query.on('row', (row) => {
       results.push(row);

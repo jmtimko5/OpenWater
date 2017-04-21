@@ -147,6 +147,7 @@ export default class DiveDetail extends Component {
                       id={review.user_id}
                       rating={review.rating}
                       text={review.message}
+                      date={review.date}
                     />
                   }>
                   </Card>
