@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   },
   map: {
     position: 'absolute',
-    top: 300,
+    top: 315,
     left: 10,
     right: 10,
     bottom: 10,
@@ -41,7 +41,8 @@ export default class NewDiveSite extends Component {
 
     this.state = {
       newDiveMarker: (
-        <Marker draggable coordinate={this.props.coordinate} pinColor="blue" onDragEnd={this.dragDiveSite} />
+        <Marker draggable coordinate={this.props.coordinate} image={require('../img/diving-buoy-small.png')} onDragEnd={this.dragDiveSite}
+       />
       ),
       newDiveCoord: this.props.coordinate,
       newDiveName: "",
@@ -123,13 +124,13 @@ export default class NewDiveSite extends Component {
               </Header>
               <Content>
                   <Form>
-                      <Item floatingLabel>
+                      <Item stackedLabel>
                           <Label>Site Name</Label>
                           <Input onChangeText={this.handleDiveNameChange} />
                       </Item>
-                      <Item floatingLabel>
+                      <Item stackedLabel>
                         <Label>Description</Label>
-                        <Input onChangeText={this.handleDiveDescriptionChange} />
+                        <Input bordered style={{height: 150}} multiline={true} onChangeText={this.handleDiveDescriptionChange} />
                       </Item>
                   </Form>
 
@@ -138,8 +139,8 @@ export default class NewDiveSite extends Component {
               initialRegion={{
               latitude: this.props.coordinate.latitude,
               longitude: this.props.coordinate.longitude,
-              latitudeDelta: 0.0522,
-              longitudeDelta: 0.0221,
+              latitudeDelta: 3.0522,
+              longitudeDelta: 3.0221,
               }}
               >
                 {this.state.newDiveMarker}

@@ -144,7 +144,7 @@ export default class Main extends Component {
               >
               {this.state.sites.map((site) => {
                 return (
-                  <Marker coordinate={{latitude: site.lat, longitude: site.lng}} key={site.id}>
+                  <Marker coordinate={{latitude: site.lat, longitude: site.lng}} key={site.id} image={require('../img/diving-buoy-small.png')}>
                     <MapView.Callout>
                       <View>
                         <H3>{site.name}</H3>

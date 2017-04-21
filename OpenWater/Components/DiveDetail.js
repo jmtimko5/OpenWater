@@ -6,7 +6,8 @@ import {
  Navigator,
 } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
-import { Container, Content, Header, Textarea, Left, Card, CardItem, Right, H1, H2, H3, Title, Button, Label, InputGroup, Body, Icon, Form, Input, Item, ListItem, Text, CheckBox } from 'native-base';
+import { Col, Row, Grid } from 'react-native-easy-grid';
+import { Container, Content, Header, List, ListItem, Textarea, Left, Card, CardItem, Right, H1, H2, H3, Title, Button, Label, InputGroup, Body, Icon, Form, Input, Item, Text, CheckBox } from 'native-base';
 import Review from './Review.js'
 
 let reviews = [
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
 
   map:{
     flex:1,
-    top: 50,
+    top: 10,
   },
 });
 
@@ -103,7 +104,7 @@ export default class DiveDetail extends Component {
       },
     })
   }
-  
+
   _navigateUserProfile(user_id){
     this.props.navigator.push({
       name: 'UserProfile',
@@ -137,26 +138,44 @@ export default class DiveDetail extends Component {
               </Header>
 
               <Content>
-                <Label>Average Rating:</Label>
-                <Text>{this.state.site.avg} ({this.state.reviews.length} reviews)</Text>
-                <Label>Description:</Label>
-                <Text>{this.state.site.description}</Text>
-                <Label>Reviews:</Label>
-                  <Card dataArray={this.state.reviews}
-                  renderRow={(review) =>
-                    <Review
-                      name={review.username}
-                      navFunc={this._navigateUserProfile}
-                      id={review.user_id}
-                      rating={review.rating}
-                      text={review.message}
-                      date={review.date}
-                    />
-                  }>
-                  </Card>
-                  <Button full rounded onPress={this._navigateNewReview}>
-                      <Text> Review Site </Text>
+                <Grid>
+                  <Col>
+                    <List>
+                      <ListItem itemDivider>
+                          <Text>Average Rating</Text>
+                      </ListItem>
+                      <ListItem >
+                          <Text>{this.state.site.avg} ({this.state.reviews.length} reviews)</Text>
+                      </ListItem>
+                      <ListItem itemDivider>
+                          <Text>Description</Text>
+                      </ListItem>
+                      <ListItem>
+                          <Text>{this.state.site.description}</Text>
+                      </ListItem>
+                      <ListItem itemDivider>
+                          <Text>Dive Site Reviews</Text>
+                      </ListItem>
+                        <List dataArray={this.state.reviews}
+                        renderRow={(review) =>
+                          <Review
+                            name={review.username}
+                            navFunc={this._navigateUserProfile}
+                            id={review.user_id}
+                            rating={review.rating}
+                            text={review.message}
+                          />
+                        }>
+                        </List>
+                    </List>
+                    <Button full rounded onPress={this._navigateNewReview}>
+                        <Text> Review Site </Text>
                     </Button>
+                  </Col>
+                </Grid>
+
+
+
               </Content>
           </Container>
           <MapView style={ styles.map }
@@ -171,7 +190,8 @@ export default class DiveDetail extends Component {
           scrollEnabled={false}
           zoomEnabled={false}
           >
-           <Marker coordinate={{latitude: this.state.site.lat, longitude: this.state.site.lng}} key={this.state.site.id} />
+           <Marker coordinate={{latitude: this.state.site.lat, longitude: this.state.site.lng}}   image={require('../img/diving-buoy-small.png')}
+                   key={this.state.site.id} />
           </MapView>
         </View>
     );
