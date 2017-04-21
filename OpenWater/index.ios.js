@@ -49,7 +49,7 @@ export default class OpenWater extends Component {
     return (
       <Navigator
       	style={{ flex:1 }}
-        initialRoute={{ name: 'Main' }}
+        initialRoute={{ name: 'Main', passProps: { region: {latitude: -16.920334, longitude: 145.770859, latitudeDelta: 3.6922, longitudeDelta: 3.6421}}}} 
         renderScene={ this.renderScene } />
     )
   }
