@@ -26,6 +26,7 @@ export default class NewReview extends Component {
 
   handleSubmit(){
     // POST review
+    var _this = this;
     fetch('http://colab-sbx-243.oit.duke.edu/api/v1/reviews', {
       method: 'POST',
       headers: {
@@ -39,8 +40,7 @@ export default class NewReview extends Component {
         message: this.state.message,
       })
     }).then(function(response) {
-           console.log(response)
-            // _this._navigateMain();
+           _this._navigateBack();
     }).catch(function(err) {
            alert(err);
     })
