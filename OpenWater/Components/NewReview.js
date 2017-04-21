@@ -19,11 +19,9 @@ export default class NewReview extends Component {
 
   _navigateBack(){
     this.props.navigator.push({
-      name: 'DiveDetail',
-      passProps: {
-        site: this.props.site_id
-      }
-    })
+      name: this.props.prev.name,
+      passProps: this.props.prev.passProps
+    });
   }
 
   handleSubmit(){
