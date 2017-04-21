@@ -32,8 +32,8 @@ export default class Main extends Component {
   constructor(props){
     super(props);
     var coord = {
-      latitude: 37.78825,
-      longitude: -122.4324,
+      latitude: -16.918354,
+      longitude: 145.770839,
     }
     this.state = {
       markers: [{
@@ -117,8 +117,8 @@ export default class Main extends Component {
 
           <MapView style={ styles.map }
               initialRegion={{
-              latitude: 37.78825,
-              longitude: -122.4324,
+              latitude: -16.920334,
+              longitude: 145.770859,
               latitudeDelta: 0.0922,
               longitudeDelta: 0.0421,
               }}
