@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   },
   map: {
     position: 'absolute',
-    top: 300,
+    top: 315,
     left: 10,
     right: 10,
     bottom: 10,
@@ -124,13 +124,13 @@ export default class NewDiveSite extends Component {
               </Header>
               <Content>
                   <Form>
-                      <Item floatingLabel>
+                      <Item stackedLabel>
                           <Label>Site Name</Label>
                           <Input onChangeText={this.handleDiveNameChange} />
                       </Item>
-                      <Item floatingLabel>
+                      <Item stackedLabel>
                         <Label>Description</Label>
-                        <Input onChangeText={this.handleDiveDescriptionChange} />
+                        <Input bordered style={{height: 150}} multiline={true} onChangeText={this.handleDiveDescriptionChange} />
                       </Item>
                   </Form>
 

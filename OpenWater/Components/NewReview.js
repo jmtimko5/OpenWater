@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Content, Header, Left, Right, Body, Title, Text, Button, Form, Item, Label, Input, Icon } from 'native-base';
+import { Container, Content, Header, List, Left, Right, Body, Title, Text, Button, Form, Item, ListItem, Label, Input, Icon } from 'native-base';
 import { Image } from 'react-native';
 
 export default class NewReview extends Component {
@@ -73,7 +73,8 @@ export default class NewReview extends Component {
           <Right />
         </Header>
         <Content>
-        <Title>{this.props.site_name}</Title>
+         <Title>{this.props.site_name}</Title>
+
           <Form>
               <Item stackedLabel>
                 <Label>Rating</Label>
