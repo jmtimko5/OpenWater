@@ -73,6 +73,7 @@ export default class NewDiveSite extends Component {
     // "description":"Great dive!","time_added":"2017-04-21T00:53:21.070Z"}
 
     //POST New Dive Site to API
+    var _this = this;
     fetch('http://colab-sbx-243.oit.duke.edu/api/v1/sites', {
       method: 'POST',
       headers: {
@@ -87,10 +88,12 @@ export default class NewDiveSite extends Component {
         description: this.state.newDiveDescription,
       }),
     }).then(function(response) {
-     console.warn(response.json())
-  })
+            _this._navigateMain();
+    }).catch(function(err) {
+           alert(err);
+    })
 
-    this._navigateMain()
+
   }
 
   handleDiveNameChange(text){
