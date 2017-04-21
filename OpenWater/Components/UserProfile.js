@@ -1,20 +1,12 @@
 import React, { Component } from 'react';
-import { Container, Content, Label, Header, Left, Right, Button, Icon, Body, Title, Card, CardItem, Text } from 'native-base';
-import { Image } from 'react-native';
+import { Container, Content, Label, Header, Left, Right, Button, Icon, Body, Title, Card, CardItem, Text, List, ListItem, H3 } from 'native-base';
+import { Image, StyleSheet } from 'react-native';
+import { Col, Row, Grid } from 'react-native-easy-grid';
 import Review from './Review.js'
-
-// Replace with GET reviews for user
-// Need to do a JOIN with dive site to get site name
-let reviews = [
-  {rating: 4, site_id: 1, site_name: 'Beach', text: 'Pretty good dive'},
-  {rating: 3, site_id: 2, site_name: 'Cove', text: 'Ok dive'},
-  {rating: 5, site_id: 3, site_name: 'Lagoon', text: 'Awesome dive'},
-];
 
 export default class UserProfile extends Component {
   constructor(props){
     super(props);
-    console.log(props);
 
     this._navigateBack = this._navigateBack.bind(this);
     this._navigateDiveDetail = this._navigateDiveDetail.bind(this);
@@ -91,28 +83,34 @@ export default class UserProfile extends Component {
 
           </Right>
         </Header>
-          <Content
-            contentContainerStyle={{
-              flex: 1,
-              alignItems: 'center'
-            }}
-          >
-              <Label>{this.state.user.username}</Label>
-              <Label>{this.state.user.location}</Label>
-          </Content>
-          <Label>Reviews</Label>
           <Content>
-            <Card dataArray={this.state.reviews}
-            renderRow={(review) =>
-              <Review
-                name={review.site_name}
-                navFunc={this._navigateDiveDetail}
-                id={review.site_id}
-                rating={review.rating}
-                text={review.message}
-              />
-            }>
-            </Card>
+            <Grid>
+              <ListItem itemDivider><Text>User Info</Text></ListItem>
+              <Row style={{ height: 85 }}>
+                <Col style={{alignItems: 'center', marginTop: 18}}>
+                  <H3>{this.state.user.username}</H3>
+                  <Text note>Location: {this.state.user.location}</Text>
+                  <Text note>Joined: {this.state.user.joined}</Text>
+                </Col>
+              </Row>
+              <Row style={{ height: 500 }}>
+                <Col>
+                  <ListItem itemDivider><Text>Reviews by this User</Text></ListItem>
+                  <List dataArray={this.state.reviews}
+                  renderRow={(review) =>
+                    <Review
+                      name={review.site_name}
+                      navFunc={this._navigateDiveDetail}
+                      id={review.site_id}
+                      rating={review.rating}
+                      text={review.message}
+                      date={review.date}
+                    />
+                  }>
+                  </List>
+                </Col>
+              </Row>
+            </Grid>
           </Content>
         </Container>
     );
