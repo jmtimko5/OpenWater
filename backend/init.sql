@@ -27,11 +27,7 @@ CREATE TABLE Review
   time_added TIMESTAMP WITHOUT TIME ZONE DEFAULT (now() at time zone 'utc')
 );
 
-INSERT INTO AppUser (username, location) VALUES ('Demo', 'Durham');
-
-INSERT INTO Site (creator_id, name, lat, lng, description) VALUES (1, 'Site1', '-16.920334', '145.770859', 'Great dive!');
-INSERT INTO Site (creator_id, name, lat, lng, description) VALUES (1, 'Site2', '-16.98','145.84', 'Other dive!');
-
-INSERT INTO Review (user_id, site_id, rating, message) VALUES (1, 1, 5, 'Amazing');
-INSERT INTO Review (user_id, site_id, rating, message) VALUES (1, 1, 4, 'Good');
-INSERT INTO Review (user_id, site_id, rating, message) VALUES (1, 2, 1, 'Bad');
+INSERT INTO AppUser (username, location) VALUES ('Joe', 'Durham');
+INSERT INTO AppUser (username, location) VALUES ('Professor Board', 'Durham');
+INSERT INTO AppUser (username, location) VALUES ('Alice', 'New York');
+INSERT INTO AppUser (username, location) VALUES ('Bob', 'Los Angeles');
